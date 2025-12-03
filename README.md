@@ -1,1 +1,1 @@
-# mot.chut.tam.su
+# Vô xem la biett
