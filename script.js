@@ -2,12 +2,12 @@ const startBtn = document.querySelector('.start-btn');
 const popupInfo = document.querySelector('.popup-info');
 const main = document.querySelector('.main');
 const displayText = document.getElementById('displayText');
-const btncontinue = document.getElementById('btn-continue')
+const btncontinue = document.getElementById('btn-continue');
 
 startBtn.onclick = () => {
     popupInfo.classList.add('active');
     main.classList.add('active');
-}
+};
 
 const texts = [
     "Tui sap 19 tuoi roi ( maket t1 )",
@@ -21,39 +21,37 @@ const texts = [
 ];
 
 let currentIndex = 0;
-let isTransitioning = false; // trạng thái đang fade
+let locked = false; // khóa khi đang chuyển hiệu ứng
 
-btncontinue.addEventListener('click', () => {
-    if (isTransitioning) return; // nếu đang chuyển chữ, bỏ qua click
+btncontinue.addEventListener("click", () => {
+    if (locked) return;
+    locked = true;
 
-    isTransitioning = true; // khóa nút
-    displayText.style.transition = "opacity .7s";
     displayText.style.opacity = 0;
 
     setTimeout(() => {
+        // nếu chưa phải câu cuối → tăng index
         if (currentIndex < texts.length - 1) {
             currentIndex++;
             displayText.textContent = texts[currentIndex];
 
-            // Nếu đã là chữ cuối, đổi nút
+            // đến câu cuối → đổi nút
             if (currentIndex === texts.length - 1) {
-                btncontinue.innerHTML = "Het roii"; // thay icon bằng chữ
-                // hoặc btncontinue.textContent = "Hoàn tất";
+                btncontinue.textContent = "Het roii";
             }
+        } else {
+            // nếu đang ở câu cuối + nhấn nữa → chuyển link
+            window.location.href = "https://m.me/ngch.rz";
+            return;
         }
 
-        // chữ hiện lại
+        // hiệu ứng fade in
         displayText.style.opacity = 1;
 
-        // Nếu là chữ cuối và người nhấn nút lần nữa, mở link
-        if (currentIndex === texts.length - 1 && btncontinue.innerHTML === "Het roii") {
-            btncontinue.addEventListener('click', () => {
-                window.location.href = "https://m.me/ngch.rz"; // link muốn chuyển
-            }, { once: true }); // chỉ chạy 1 lần
-        }
+        // mở khóa sau khi hoàn tất animation
         setTimeout(() => {
-            isTransitioning = false;
-        }, 700); // thời gian fade in = 1s
+            locked = false;
+        }, 700);
+
     }, 700);
-    
 });
