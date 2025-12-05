@@ -11,6 +11,7 @@ startBtn.onclick = () => {
 
 const texts = [
     "Tui 07 nhe ( maket t1 )",
+    "Tui 07 nhe ( maket t1 )",
     "Tui thich nghe nhac buon mac du cha biet mình buon vi cgi..",
     "Tui thich choi game nua ( liqi la chu yeu )",
     "Tui nhát lam, nhạt nua, ít khi chủ động..",
@@ -55,4 +56,5 @@ btncontinue.addEventListener("click", () => {
 
     }, 700);
 });
+
 
