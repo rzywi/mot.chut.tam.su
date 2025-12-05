@@ -8,21 +8,23 @@
 
 /* Body */
 body {
-    
     cursor: default;
-    overflow: hidden;      /* cho phép scroll dọc nếu cần */
     background: #f7a6d5;
-    padding: 20px;           /* tránh sát mép màn hình trên mobile */
+    padding: 20px;
+    overflow: hidden;
 }
+
 .main {
     transition: .3s ease;
 }
+
 .main.active {
     filter: blur(16px);
 }
+
+/* Home */
 .home {
     height: 100vh;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,22 +32,18 @@ body {
 
 /* Card lựa chọn */
 .luachon {
-    max-width: 600px;  /* không quá rộng trên PC */  
-    display: flex;    
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.luachon h1 {
     text-align: center;
-    font-size: 48px;
-    margin-bottom: -25px;
-
 }
+
 @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -53,7 +51,7 @@ body {
 }
 
 .luachon h1 {
-    font-family: 'Poppins', sans-serif;
+    font-size: clamp(32px, 7vw, 48px);
     font-weight: 600;
     background: linear-gradient(270deg, #ff6ec4, #7873f5, #ffcb6b);
     background-size: 600% 600%;
@@ -61,41 +59,29 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 5s ease infinite;
-    text-align: center;
 }
-
-
 
 .luachon p {
-    text-align: center;
-    font-size: 64px;
+    margin: 25px 0;
     font-size: clamp(14px, 5vw, 28px);
-    margin: 30px;
 }
 
-
-
-
-.luachon .start-btn {
+.start-btn {
     width: 120px;
     height: 55px;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     background: #f7a6d5;
-    outline: none;
     border-radius: 12px;
     box-shadow: 0 0 5px #f7a6d5;
-    letter-spacing: 1px;
-    font-weight: 600 ;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
-
-.luachon .start-btn:hover {
-    color: #ffffff;
+.start-btn:hover {
     background: #ff8fd6;
-    border-color: #ffffff;
     box-shadow: 0 0 10px #ff8fd6, 0 0 25px #ff8fd6;
+    color: #fff;
 }
 
 #btn-continue {
@@ -106,132 +92,124 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 5s ease infinite;
-    text-align: center;
 }
 
+
+/* Popup */
 .popup-info {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.9);
-    width: 500px;
+    width: min(500px, 90%);
     background: #ffbbe3;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
+    padding: 20px;
     border-radius: 10px;
-    padding: 10px 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     opacity: 0;
     pointer-events: none;
-    transition: 1s ease;
-    display: flex;              /* bật flex */
-    flex-direction: column;     /* xếp theo cột */
-    justify-content: center;    /* canh giữa theo chiều dọc */
-    align-items: center;        /* canh giữa theo chiều ngang */
-    text-align: center;
+    transition: .8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .popup-info.active {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
 }
-
 .popup-info h2 {
-    font-size: 28px;
-    padding-bottom: 15px;
+    font-size: clamp(22px, 6vw, 28px);
     background: linear-gradient(270deg, #ff6ec4, #825ec2, #94a9ff);
     background-size: 600% 600%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 6s ease infinite;
-    text-align: center;
 }
+
 .popup-info .info {
-    font-size: 24px;
+    margin: 8px 0;
+    font-size: clamp(16px, 4vw, 24px);
     font-weight: 500;
-    margin: 4px 0;
 }
 
-
-
-
-.popup-info .btn-group {
+.btn-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
     padding: 15px;
 }
 
-
-
-.popup-info .info-btn {
+.info-btn {
     width: 100px;
     height: 55px;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     background: #f7a6d5;
-    outline: none;
     border-radius: 12px;
     box-shadow: 0 0 5px #f7a6d5;
-    letter-spacing: 1px;
-    font-weight: 600 ;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
     position: relative;
     overflow: visible;
 }
 
-/* Glow nhẹ kiểu anime */
-.popup-info .info-btn:hover {
+/* Glow anime */
+.info-btn:hover {
     background: #f8aaeb;
     color: #fff;
-    box-shadow: 0 0 12px #ffc3f0, 0 0 7px #090709;
+    box-shadow: 0 0 12px #ffc3f0, 0 0 7px #000;
     transform: scale(1.04);
 }
 
-/* Aura nhỏ gọn */
-.popup-info .info-btn:hover::before {
+/* Aura */
+.info-btn:hover::before {
     content: "";
     position: absolute;
     inset: -6px;
     border-radius: 14px;
-    background: radial-gradient(circle, rgba(255,150,230,0.8), rgba(255,100,210,0.2), transparent 70%);
+    background: radial-gradient(circle,
+        rgba(255,150,230,0.8),
+        rgba(255,100,210,0.2),
+        transparent 70%
+    );
     filter: blur(6px);
     animation: animeAuraMini 1.5s infinite linear;
     z-index: -1;
 }
 
 @keyframes animeAuraMini {
-    0%   { transform: rotate(0deg) scale(1); }
-    50%  { transform: rotate(180deg) scale(1.05); }
+    0% { transform: rotate(0) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
     100% { transform: rotate(360deg) scale(1); }
 }
 
-/* Hiệu ứng heart */
+/* Heart */
 .heart {
     position: absolute;
-    font-size: clamp(16px, 4vw, 32px); /* tự co dãn theo màn hình */
-    user-select: none;
+    font-size: clamp(16px, 4vw, 32px);
     pointer-events: none;
-    transition: opacity 1s linear, transform 1s ease;
     opacity: 1;
     filter: drop-shadow(0 0 5px #fddbff);
+    transition: opacity 1s linear, transform 1s ease;
 }
 
-/* Responsive typography */
-@media (max-width: 400px) {
-    .luachon h1 {
-        font-size: 38px;
-    }
-    .luachon {
-        padding: 15px;
-    }
-}
-
+/* Text chuyển đổi */
 #displayText {
     transition: opacity .7s ease;
-    opacity: 1;
 }
 
 #displayText.hidden {
     opacity: 0;
+}
+
+/* Mobile tối ưu */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .luachon {
+        padding: 15px;
+    }
 }
