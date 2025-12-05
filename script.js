@@ -10,6 +10,7 @@ startBtn.onclick = () => {
 };
 
 const texts = [
+    "Gửi vợ tương lai..",
     "Tui 07 nhe ( maket t1 )",
     "Tui thich nghe nhac buon mac du cha biet mình buon vi cgi..",
     "Tui thich choi game nua ( liqi la chu yeu )",
@@ -55,6 +56,7 @@ btncontinue.addEventListener("click", () => {
 
     }, 700);
 });
+
 
 
 
